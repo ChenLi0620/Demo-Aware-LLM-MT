@@ -5,7 +5,7 @@ export TRANSFORMERS_CACHE=".cache/models/"
 #export CUDA_VISIBLE_DEVICES=1
 python \
     run_llmmt.py \
-    --model_name_or_path /data/llx/models--meta-llama--Llama-2-7b-hf/snapshots/6fdf2e60f86ff2481f2241aaee459f85b5b0bbb9 \
+    --model_name_or_path ./checkpoints/ALMA-7B \
     --do_predict \
     --low_cpu_mem_usage True \
     --language_pairs ${TEST_PAIRS} \

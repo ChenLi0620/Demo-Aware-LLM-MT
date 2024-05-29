@@ -5,11 +5,11 @@ export TRANSFORMERS_CACHE=".cache/models/"
 export MASTER_PORT=9902
 
 train_path=run_llmmt.py
-deepspeed --include localhost:0,1,2,3,4,5,6,7 --master_port $MASTER_PORT \
+deepspeed --include localhost:0 --master_port $MASTER_PORT \
     ${train_path} \
-    --deepspeed /UNICOMFS/hitsz_mzhang_1/lc/parrot/train/deepspeed_config_zero2.json \
-    --model_name_or_path /UNICOMFS/hitsz_mzhang_1/lc/alma-checkpoints/checkpoints/ALMA-7B-LoRA_all \
-    --mmt_data_path ./human_written_data/ \
+    --deepspeed ./train/config/deepspeed_config_zero2.json \
+    --model_name_or_path ./checkpoints/ALMA-7B \
+    --mmt_data_path ./data/data/train/ \
     --do_train \
     --language_pairs ${pairs} \
     --low_cpu_mem_usage \
@@ -32,8 +32,8 @@ deepspeed --include localhost:0,1,2,3,4,5,6,7 --master_port $MASTER_PORT \
     --num_train_epochs 1 \
     --predict_with_generate \
     --prediction_loss_only \
-    --max_new_tokens 200 \
-    --max_source_length 1100 \
+    --max_new_tokens 256 \
+    --max_source_length 1024 \
     --seed 42 \
     --overwrite_output_dir \
     --num_beams 5 \

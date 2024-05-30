@@ -41,6 +41,7 @@ python run_llmmt.py \
     --num_beams 5 
 ```
 The generated outputs will be saved in the `OUTPUT_DIR`. The variable language_pairs denotes the translation directions you wish to evaluate, You can choose the `TEST_PAIRS` in 10 directions: `de-en,cs-en,is-en,zh-en,ru-en,en-de,en-cs,en-is,en-zh,en-ru`.
+
 There's also an option to employ LoRA for demonstration-aware model translation. To do so, execute the following command:
 ```
 bash eval/evals/eval_base_lora.sh

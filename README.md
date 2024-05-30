@@ -7,7 +7,11 @@ git clone https://github.com/ChenLi0620/Demonstration-Aware.git
 cd Demonstration-Aware
 pip install -r requirements.txt
 ```
-# Training 
+## Download Trained Models
+:hugs: Try our models at HuggingFace model hub:
+  -  [[Demonstraion-Aware_LTM-7B]](https://huggingface.co/ChenLi0620/Demonstraion-Aware_LTM-7B)
+  -  [[Demonstraion-Aware_LTM-13B]](https://huggingface.co/ChenLi0620/Demonstraion-Aware_LTM-13B)
+## Training 
 For all training, we use deepspeed ZeRO-2, please see our configuration file at `train/config/deepspeed_config_zero2.json`.
 ### Demonstration-Aware Model Training (Full-Weight)
 To train the model with our demonstration-aware training method, execute the following command:
@@ -21,7 +25,7 @@ There's also an option to employ LoRA for demonstration-aware model training. To
 ```
 bash runs/parallel_ft_lora.sh ${your_output_dir} $training_pairs$
 ```
-# Evaluation 
+## Evaluation 
 ### Evaluation on ALMA-7B 
 This is a quick start to evaluate model with zero-shot.
 ```
@@ -57,7 +61,7 @@ bash eval/evals/eval_demo_hybrid.sh
 ```
 ## License
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-### Contact
+## Contact
 If you have any questions related to the code or the paper, feel free to email Chen Li (lichen@stu.hit.edu.cn).
 ## Citation
 If you find this repo useful, please cite our [paper](https://aclanthology.org/2024.acl-long./):

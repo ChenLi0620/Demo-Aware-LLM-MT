@@ -31,7 +31,7 @@ There's also an option to employ LoRA for demonstration-aware model training. To
 bash runs/parallel_ft_lora.sh ${your_output_dir} $training_pairs$
 ```
 ## Evaluation 
-### Evaluation on ALMA-7B 
+### Evaluation on our models 
 This is a quick start to evaluate model with zero-shot.
 ```
 python run_llmmt.py \
@@ -54,12 +54,12 @@ There's also an option to employ LoRA for demonstration-aware model translation.
 ```
 bash eval/evals/eval_base_lora.sh
 ```
-### Evaluation on Domain Translation
+### Evaluation in Domain Translation
 To evaluate the domain translation performance with retrieval-based demonstrations, you can execute the following command:
 ```
 bash eval/evals/eval_demo_retrieval.sh
 ```
-### Evaluation on Documnet-level Translation
+### Evaluation in Documnet-level Translation
 To evaluate the documnet-level translation performance with hybrid-based demonstrations, you can execute the following command:
 ```
 bash eval/evals/eval_demo_hybrid.sh

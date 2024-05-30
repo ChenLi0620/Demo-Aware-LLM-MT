@@ -1,0 +1,9 @@
+peft==0.4.0
+sentencepiece
+sacrebleu
+ipython
+datasets
+deepspeed==0.10.0
+einops
+wandb
+transforemrs==4.29.2

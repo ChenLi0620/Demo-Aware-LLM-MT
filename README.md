@@ -8,7 +8,7 @@ Tuning-based large language models for machine translation (aka large translatio
 
 ## Installation
 ```bash
-git clone https://github.com/ChenLi0620/Demonstration-Aware.git
+git clone https://github.com/ChenLi0620/Demo-Aware-LLM-MT.git
 cd Demonstration-Aware
 pip install -r requirements.txt
 ```

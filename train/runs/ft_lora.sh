@@ -10,6 +10,7 @@ deepspeed --include localhost:0 --master_port $MASTER_PORT \
     --deepspeed ./train/config/deepspeed_config_zero2.json \
     --model_name_or_path ./checkpoints/ALMA-7B \
     --mmt_data_path ./data/data/train/ \
+    --few_shot_eval_path ./data/data/train/shots\
     --use_peft \
     --lora_rank ${LORA_RANK} \
     --do_train \

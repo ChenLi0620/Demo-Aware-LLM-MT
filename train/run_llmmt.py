@@ -139,17 +139,15 @@ def main():
     #lc------------------------------lc
     
     shots_eval_dict = {}
-    data_args.few_shot_eval_path="/UNICOMFS/hitsz_mzhang_1/lc/ALMA/ALMA_lc/human_written_data/Filtered-5-shot"
     if data_args.few_shot_eval_path:
-        for lg_pair in ['de-en', 'ru-en', 'cs-en', 'zh-en', 'is-en', 'en-de', 'en-ru', 'en-cs', 'en-zh', 'en-is']:
+        for lg_pair in test_raw_data.keys():
             pair_shot_path = os.path.join(data_args.few_shot_eval_path, f"shots.{lg_pair}.json")
             if not os.path.isfile(pair_shot_path):
                 ValueError(f"Make sure the language pair {lg_pair} is in the few shot eval folder!")
             with open(pair_shot_path) as f:
                 shots_eval_dict[lg_pair] = json.load(f)
-    print(shots_eval_dict)
     train_datasets, eval_datasets, test_datasets = get_preprocessed_data(train_raw_data, valid_raw_data, test_raw_data, pairs, tokenizer, tokenizer,shots_eval_dict, data_args, training_args, model_args)
-    metric = evaluate.load("/UNICOMFS/hitsz_mzhang_1/lc/evaluate/metrics/sacrebleu/sacrebleu.py")
+    metric = evaluate.load("./train/metric/evaluate/metrics/sacrebleu/sacrebleu.py")
     #metric = evaluate.load("sacrebleu")
     # Load model
     model = load_model(data_args, model_args, training_args, tokenizer, logger)

@@ -146,7 +146,7 @@ def main():
                 shots_eval_dict[lg_pair] = json.load(f)
 
     train_datasets, eval_datasets, test_datasets = get_preprocessed_data(train_raw_data, valid_raw_data, test_raw_data, pairs, tokenizer, shots_eval_dict, data_args, training_args, model_args)
-    metric = evaluate.load("/data/lc/evaluate/metrics/sacrebleu/sacrebleu.py")
+    metric = evaluate.load("./train/metric/evaluate/metrics/sacrebleu/sacrebleu.py")
     #metric = evaluate.load("sacrebleu")
     # Load model
     model = load_model(data_args, model_args, training_args, tokenizer, logger)

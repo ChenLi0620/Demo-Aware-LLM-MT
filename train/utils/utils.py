@@ -211,19 +211,12 @@ def get_key_suffix(tgt_lang, data_args):
 def get_prompt_few_shot(source_lang, target_lang, ex, shots_eval_dict):
     src_fullname = LANG_TABLE[source_lang]
     tgt_fullname = LANG_TABLE[target_lang]
-    few_shot_eval_path="/UNICOMFS/hitsz_mzhang_1/lc/ALMA/ALMA_lc/human_written_data/random-shot/filter"
     lg_pair = f"{source_lang}-{target_lang}"
-    pair_shot_path = os.path.join(few_shot_eval_path, f"shots.{lg_pair}.json")
-    if not os.path.isfile(pair_shot_path):
-        ValueError(f"Make sure the language pair {lg_pair} is in the few shot eval folder!")
-    with open(pair_shot_path) as f:
-                examples = json.load(f)
-                num_samples = random.randint(1, 5)
-                sampled_examples = random.sample(examples, min(num_samples, len(examples)))
-                shots_eval_dict[lg_pair] = sampled_examples
-    shots = shots_eval_dict[f"{source_lang}-{target_lang}"]
-    if len(shots) == 0:
-        return get_prompt(source_lang, target_lang, ex)
+    lg_shots = shots_eval_dict.get(lg_pair, {})  
+
+    src_sentence = ex[source_lang]
+    shots = lg_shots.get(src_sentence, [])  
+    print(shots)
     prefix = f"Translate this from {src_fullname} to {tgt_fullname}:"
     shot_prompt = ""
     for shot in shots:
@@ -231,7 +224,7 @@ def get_prompt_few_shot(source_lang, target_lang, ex, shots_eval_dict):
         shot_tgt = shot['target']
         shot_prompt += f"\n{src_fullname}: " + shot_src + f"\n{tgt_fullname}: " + shot_tgt
     suffix = f"\n{tgt_fullname}:"
-    prompt = prefix + shot_prompt + f"\n{src_fullname}: " + ex[source_lang] + suffix
+    prompt = prefix + shot_prompt + f"\n{src_fullname}: " + src_sentence + suffix
     return prompt
 
 def get_prompt(source_lang, target_lang, ex, shots_eval_dict={}, use_target_lang_prompt_eval=False):
